@@ -8,9 +8,12 @@ function App() {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    axios.get('https://localhost:7266/api/activities').then(response => {
+    axios.get('https://localhost:7266/api/activities/fdb5ddfd-8836-453d-3889-08dca0cd6879').then(response => {
       console.log(response);
-      setActivities(response.data);
+
+      const data = response.data;
+
+      setActivities(Array.isArray(data) ? response.data : [response.data]);
     })
   }, [])
 
