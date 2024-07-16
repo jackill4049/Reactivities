@@ -39,7 +39,7 @@ function App() {
     })
   }, [])
   // sa axios.get gadjamo backend i u njemu odredjeni endpoint. Axios nam vraca "promise" (sta god to bilo, ali
-  // to nam omogucava da mozemo da vezujemo komande jednu za drugom)
+  // to nam omogucava da mozemo da vezujemo komande jednu za drugom => .then)
   // dalje, dobijamo neki response, koji prvo logujemo u konzolu, a zatim u activity promenjivu
   // postavljamo vrednost koja se nalazi u response.data
   // na kraju, moramo da stavimo prazan niz => od cega nam zavisi da li ce se ovo sve pozvati? ni od cega
