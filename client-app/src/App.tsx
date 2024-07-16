@@ -4,28 +4,38 @@ import './App.css';
 import axios from 'axios';
 import { Header, List } from 'semantic-ui-react';
 
+interface Activity {
+  id: string;
+  title: string;
+  date: string; 
+  description: string;
+  category: string;
+  city: string;
+  venue: string;
+}
+
 function App() {
-  const [activities, setActivities] = useState<any[]>([]);
+  const [activity, setActivity] = useState<Activity | null>(null);
 
   useEffect(() => {
     axios.get('https://localhost:7266/api/activities/fdb5ddfd-8836-453d-3889-08dca0cd6879').then(response => {
       console.log(response);
-
-      setActivities(Array.isArray(response.data) ? response.data : [response.data]);
+      setActivity(response.data);
     })
   }, [])
 
   return (
     <div>
-      <Header as='h2' icon='users' content='Reactivities'/>
-        <List>
-          {activities.map((activity: any) => (
-            <List.Item key = {activity.id}>
-              {activity.title}
-            </List.Item>
-          )
-          )}
-        </List>
+      {activity && (
+        <div>
+          <Header as='h2' icon='users' content='Reactivities'/>
+            <List>
+              <List.Item key = {activity.id}>
+                {activity.title}
+              </List.Item>
+            </List>
+        </div>
+      )}
     </div>
   );
 }
